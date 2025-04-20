@@ -14,7 +14,7 @@ router.post(
     .notEmpty()
     .isIn(["Email", "SMS", "PUSH", "Whatsapp"])
     .withMessage("El tipo de Notificacion no es válida"),
-  body("massage").isString().withMessage("El mensaje es invalido"),
+  body("message").isString().withMessage("El mensaje es invalido"),
   handleInputErrors,
   NotificationsController.createNotification
 );

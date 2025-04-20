@@ -12,6 +12,8 @@ export class NotificationsController {
         success: true,
         FinalMessage: result,
       });
+      console.log("REQ.BODY:", req.body);
+
     } catch (error) {
       res
         .status(400)
