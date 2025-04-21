@@ -1,43 +1,47 @@
-import { EmailNotification } from './EmailNotification';
-import { INotificationBuilder } from '../interfaces/INotificationBuilder';
+import { EmailNotification } from "./EmailNotification";
+import { IEmailBuilder } from "./IEmailBuilder";
 
-export class EmailBuilder implements INotificationBuilder<EmailNotification> {
-  private email!: EmailNotification;
+
+export class EmailBuilder implements IEmailBuilder {
+  private email: EmailNotification;
+
+  constructor() {
+    this.email = new EmailNotification();
+  }
 
   reset(): void {
     this.email = new EmailNotification();
   }
 
-  setTo(to: string) {
+  setTo(to: string): this {
     this.email.to = to;
     return this;
   }
 
-  setSubject(subject: string) {
+  setSubject(subject: string): this {
     this.email.subject = subject;
     return this;
   }
 
-  setBody(body: string) {
+  setBody(body: string): this {
     this.email.body = body;
     return this;
   }
 
-  setCc(cc: string[]) {
+  setCc(cc: string[]): this {
     this.email.cc = cc;
     return this;
   }
 
-  setBcc(bcc: string[]) {
+  setBcc(bcc: string[]): this {
     this.email.bcc = bcc;
     return this;
   }
 
-  setAttachments(attachments: string[]) {
+  setAttachments(attachments: string[]): this {
     this.email.attachments = attachments;
     return this;
   }
-
   setPriority(priority: 'alta' | 'media' | 'baja') {
     this.email.priority = priority;
     return this;

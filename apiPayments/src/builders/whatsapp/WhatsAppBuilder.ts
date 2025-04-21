@@ -1,11 +1,12 @@
-import { WhatsAppNotification } from './WhatsAppNotification';
-import { INotificationBuilder } from '../interfaces/INotificationBuilder';
 
-export class WhatsAppBuilder implements INotificationBuilder<WhatsAppNotification> {
-  private wa!: WhatsAppNotification;
+import { INotificationBuilder } from '../interfaces/INotificationBuilder';
+import { WhatsappNotification } from './WhatsAppNotification';
+
+export class WhatsappBuilder implements INotificationBuilder<WhatsappNotification> {
+  private wa!: WhatsappNotification;
 
   reset(): void {
-    this.wa = new WhatsAppNotification();
+    this.wa = new WhatsappNotification();
   }
 
   setPhoneNumber(phoneNumber: string) {
@@ -38,7 +39,7 @@ export class WhatsAppBuilder implements INotificationBuilder<WhatsAppNotificatio
     return this;
   }
 
-  build(): WhatsAppNotification {
+  build(): WhatsappNotification {
     return this.wa;
   }
 }

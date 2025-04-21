@@ -6,8 +6,8 @@ export class PushNotification {
     clickAction?: string;
     priority?: 'urgente' | 'normal';
   
-    send() {
-      console.log(`Enviando Push a ${this.deviceToken}: ${this.message}`);
+    send(): string {
+      return `Push enviado al token ${this.deviceToken} con título "${this.title}"`;
     }
   }
   

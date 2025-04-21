@@ -5,8 +5,8 @@ export class SmsNotification {
     deliveryReportRequired?: boolean;
     scheduleTime?: Date;
   
-    send() {
-      console.log(`Enviando SMS a ${this.phoneNumber}: "${this.message}"`);
+    send(): string {
+      return `SMS enviado a ${this.phoneNumber}: ${this.message}`;
     }
   }
   

@@ -1,4 +1,4 @@
-export class WhatsAppNotification {
+export class WhatsappNotification {
     phoneNumber!: string;
     message!: string;
     mediaUrl?: string;
@@ -6,8 +6,8 @@ export class WhatsAppNotification {
     interactiveButtons?: string[];
     language?: string;
   
-    send() {
-      console.log(`Enviando WhatsApp a ${this.phoneNumber}: ${this.message}`);
+    send(): string {
+      return `WhatsApp enviado a ${this.phoneNumber}: ${this.message}`;
     }
   }
   

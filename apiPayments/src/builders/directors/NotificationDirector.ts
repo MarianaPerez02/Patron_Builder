@@ -1,14 +1,13 @@
 import { INotificationBuilder } from "../interfaces/INotificationBuilder";
 
+export class NotificationDirector<T, B extends INotificationBuilder<T>> {
+  private builder!: B;
 
-export class NotificationDirector<T> {
-  private builder!: INotificationBuilder<T>;
-
-  setBuilder(builder: INotificationBuilder<T>) {
+  setBuilder(builder: B) {
     this.builder = builder;
   }
 
-  construct(configure: (builder: INotificationBuilder<T>) => void): T {
+  construct(configure: (builder: B) => void): T {
     this.builder.reset();
     configure(this.builder);
     return this.builder.build();
