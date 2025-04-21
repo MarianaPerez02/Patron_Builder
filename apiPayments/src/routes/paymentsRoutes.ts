@@ -2,11 +2,11 @@ import { Router } from "express";
 import { body } from "express-validator";
 
 import { PaymentsController } from "../controllers/PaymentsController";
-import { validationResult } from "express-validator";
 import { handleInputErrors } from "../middleware/validation";
 
 const router = Router();
 
+router.get("/", PaymentsController.getAllPayments);
 router.post(
   "/",
   body("type")
