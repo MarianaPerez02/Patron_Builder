@@ -1,26 +1,44 @@
-import { INotificationBuilder } from '../interfaces/INotificationBuilder';
 import { PushNotification } from './PushNotification';
+import { INotificationBuilder } from '../interfaces/INotificationBuilder';
 
-export class PushBuilder implements INotificationBuilder {
-  private push: PushNotification = new PushNotification();
+export class PushBuilder implements INotificationBuilder<PushNotification> {
+  private push!: PushNotification;
 
   reset(): void {
     this.push = new PushNotification();
   }
 
-  setBasicInfo(data: any): void {
-    this.push.deviceToken = data.deviceToken;
-    this.push.title = data.title;
-    this.push.message = data.message;
+  setDeviceToken(token: string) {
+    this.push.deviceToken = token;
+    return this;
   }
 
-  setOptionalData(data: any): void {
-    this.push.imageUrl = data.imageUrl;
-    this.push.clickAction = data.clickAction;
-    this.push.priority = data.priority || 'normal';
+  setTitle(title: string) {
+    this.push.title = title;
+    return this;
   }
 
-  getNotification(): PushNotification {
+  setMessage(message: string) {
+    this.push.message = message;
+    return this;
+  }
+
+  setImageUrl(url: string) {
+    this.push.imageUrl = url;
+    return this;
+  }
+
+  setClickAction(action: string) {
+    this.push.clickAction = action;
+    return this;
+  }
+
+  setPriority(priority: 'urgente' | 'normal') {
+    this.push.priority = priority;
+    return this;
+  }
+
+  build(): PushNotification {
     return this.push;
   }
 }

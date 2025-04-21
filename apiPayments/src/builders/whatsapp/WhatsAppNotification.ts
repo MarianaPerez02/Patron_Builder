@@ -5,5 +5,9 @@ export class WhatsAppNotification {
     caption?: string;
     interactiveButtons?: string[];
     language?: string;
+  
+    send() {
+      console.log(`Enviando WhatsApp a ${this.phoneNumber}: ${this.message}`);
+    }
   }
   

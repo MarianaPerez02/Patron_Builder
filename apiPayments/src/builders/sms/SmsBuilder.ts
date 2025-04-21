@@ -1,25 +1,39 @@
-import { INotificationBuilder } from '../interfaces/INotificationBuilder';
 import { SmsNotification } from './SmsNotification';
+import { INotificationBuilder } from '../interfaces/INotificationBuilder';
 
-export class SmsBuilder implements INotificationBuilder {
-  private sms: SmsNotification = new SmsNotification();
+export class SmsBuilder implements INotificationBuilder<SmsNotification> {
+  private sms!: SmsNotification;
 
   reset(): void {
     this.sms = new SmsNotification();
   }
 
-  setBasicInfo(data: any): void {
-    this.sms.phoneNumber = data.phoneNumber;
-    this.sms.message = data.message;
+  setPhoneNumber(phoneNumber: string) {
+    this.sms.phoneNumber = phoneNumber;
+    return this;
   }
 
-  setOptionalData(data: any): void {
-    this.sms.senderId = data.senderId;
-    this.sms.deliveryReportRequired = data.deliveryReportRequired;
-    this.sms.scheduleTime = data.scheduleTime;
+  setMessage(message: string) {
+    this.sms.message = message;
+    return this;
   }
 
-  getNotification(): SmsNotification {
+  setSenderId(senderId: string) {
+    this.sms.senderId = senderId;
+    return this;
+  }
+
+  setDeliveryReportRequired(required: boolean) {
+    this.sms.deliveryReportRequired = required;
+    return this;
+  }
+
+  setScheduleTime(date: Date) {
+    this.sms.scheduleTime = date;
+    return this;
+  }
+
+  build(): SmsNotification {
     return this.sms;
   }
 }

@@ -1,31 +1,49 @@
-import { INotificationBuilder } from '../interfaces/INotificationBuilder';
 import { EmailNotification } from './EmailNotification';
+import { INotificationBuilder } from '../interfaces/INotificationBuilder';
 
-export class EmailBuilder implements INotificationBuilder {
-  private email: EmailNotification;
-
-  constructor() {
-    this.email = new EmailNotification();
-  }
+export class EmailBuilder implements INotificationBuilder<EmailNotification> {
+  private email!: EmailNotification;
 
   reset(): void {
     this.email = new EmailNotification();
   }
 
-  setBasicInfo(data: any): void {
-    this.email.to = data.to;
-    this.email.subject = data.subject;
-    this.email.body = data.body;
+  setTo(to: string) {
+    this.email.to = to;
+    return this;
   }
 
-  setOptionalData(data: any): void {
-    this.email.cc = data.cc || [];
-    this.email.bcc = data.bcc || [];
-    this.email.attachments = data.attachments || [];
-    this.email.priority = data.priority || 'normal';
+  setSubject(subject: string) {
+    this.email.subject = subject;
+    return this;
   }
 
-  getNotification(): EmailNotification {
+  setBody(body: string) {
+    this.email.body = body;
+    return this;
+  }
+
+  setCc(cc: string[]) {
+    this.email.cc = cc;
+    return this;
+  }
+
+  setBcc(bcc: string[]) {
+    this.email.bcc = bcc;
+    return this;
+  }
+
+  setAttachments(attachments: string[]) {
+    this.email.attachments = attachments;
+    return this;
+  }
+
+  setPriority(priority: 'alta' | 'media' | 'baja') {
+    this.email.priority = priority;
+    return this;
+  }
+
+  build(): EmailNotification {
     return this.email;
   }
 }

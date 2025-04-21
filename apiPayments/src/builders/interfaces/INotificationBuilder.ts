@@ -1,7 +1,4 @@
-export interface INotificationBuilder {
+export interface INotificationBuilder<T> {
     reset(): void;
-    setBasicInfo(data: any): void;
-    setOptionalData?(data: any): void;
-    getNotification(): any;
+    build(): T;
   }
-  

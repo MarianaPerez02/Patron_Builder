@@ -3,6 +3,10 @@ export class SmsNotification {
     message!: string;
     senderId?: string;
     deliveryReportRequired?: boolean;
-    scheduleTime?: string; // ISO string
+    scheduleTime?: Date;
+  
+    send() {
+      console.log(`Enviando SMS a ${this.phoneNumber}: "${this.message}"`);
+    }
   }
   

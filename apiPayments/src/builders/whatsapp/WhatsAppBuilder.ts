@@ -1,26 +1,44 @@
-import { INotificationBuilder } from '../interfaces/INotificationBuilder';
 import { WhatsAppNotification } from './WhatsAppNotification';
+import { INotificationBuilder } from '../interfaces/INotificationBuilder';
 
-export class WhatsAppBuilder implements INotificationBuilder {
-  private whatsapp: WhatsAppNotification = new WhatsAppNotification();
+export class WhatsAppBuilder implements INotificationBuilder<WhatsAppNotification> {
+  private wa!: WhatsAppNotification;
 
   reset(): void {
-    this.whatsapp = new WhatsAppNotification();
+    this.wa = new WhatsAppNotification();
   }
 
-  setBasicInfo(data: any): void {
-    this.whatsapp.phoneNumber = data.phoneNumber;
-    this.whatsapp.message = data.message;
+  setPhoneNumber(phoneNumber: string) {
+    this.wa.phoneNumber = phoneNumber;
+    return this;
   }
 
-  setOptionalData(data: any): void {
-    this.whatsapp.mediaUrl = data.mediaUrl;
-    this.whatsapp.caption = data.caption;
-    this.whatsapp.interactiveButtons = data.interactiveButtons || [];
-    this.whatsapp.language = data.language || 'es';
+  setMessage(message: string) {
+    this.wa.message = message;
+    return this;
   }
 
-  getNotification(): WhatsAppNotification {
-    return this.whatsapp;
+  setMediaUrl(url: string) {
+    this.wa.mediaUrl = url;
+    return this;
+  }
+
+  setCaption(caption: string) {
+    this.wa.caption = caption;
+    return this;
+  }
+
+  setInteractiveButtons(buttons: string[]) {
+    this.wa.interactiveButtons = buttons;
+    return this;
+  }
+
+  setLanguage(lang: string) {
+    this.wa.language = lang;
+    return this;
+  }
+
+  build(): WhatsAppNotification {
+    return this.wa;
   }
 }
